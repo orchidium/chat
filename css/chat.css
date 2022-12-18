@@ -1,0 +1,665 @@
+@font-face {
+  font-family: 'Jali Arabic';
+  src: url(../fonts/Jali_Arabic_Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Jali Arabic';
+  src: url(../fonts/Jali_Arabic_Bold.ttf);
+  font-weight: bold;
+}
+
+:root {
+
+  /** Accent Color
+   ---------------------------------------------------------*/
+
+  --accent-color: #8040a0;
+  --accent-text-color: rgba(255,255,255,0.75);
+  --focus-outline: 0.2rem solid var(--accent-color);
+
+  /** Statusbar Filter
+   ---------------------------------------------------------*/
+
+  --statusbar-filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='invert'><feColorMatrix in='SourceGraphic' color-interpolation-filters='sRGB' type='matrix' values='1 -1 0.3019 0 0 0 0.3019 0 0 0 0 0 0.3019 0 0 0 0 0 1 0'/></filter></svg>#invert");
+
+  /** Grey Colors
+   ---------------------------------------------------------*/
+
+  --color-alpha: #333333;
+  --color-beta: #ffffff;
+  --color-gamma: #4d4d4d;
+  --color-delta: #5f5f5f;
+  --color-epsilon: #858789;
+  --color-zeta: #a6a8ab;
+  --color-eta: #c7c9cc;
+  --color-theta: #e7e9ec;
+  --color-iota: #f4f6f8;
+
+  /** Brand Colors
+   ---------------------------------------------------------*/
+
+  --color-darkblue: #0061e0;
+  --color-blue: #00a0e8;
+  --color-turquoise: #00ddff;
+  --color-darkorange: #a04030;
+  --color-orange: #ff6040;
+  --color-yellow: #ffc000;
+  --color-violet: #d15ca8;
+
+  --color-warning: var(--color-yellow);
+  --color-destructive: #c00040;
+  --color-preffered: #40a060;
+
+  /** Background
+   ---------------------------------------------------------*/
+
+  --background: #e7e9ec;
+  --background-plus: #fff;
+  --background-minus: #a6a8ab;
+
+  /** Borders
+   ---------------------------------------------------------*/
+
+  --border-color: var(--color-theta);
+
+  /** Text Color
+   ---------------------------------------------------------*/
+
+  --text-color: #333;
+  --text-color-minus: #fff;
+  --label-color: #333;
+
+  /** Button
+   ---------------------------------------------------------*/
+
+  --button-background: linear-gradient(to bottom, #fff, #f4f4f4);
+  --button-background-plus: linear-gradient(to bottom, #d8dadd, #ccced2);
+  --button-background-minus: linear-gradient(to bottom, #bcbec2, #c8cacd);
+  --button-background-list: linear-gradient(to bottom, #e7e9ec, #dbddf0);
+
+  /** Links
+   ---------------------------------------------------------*/
+
+  --link-color: var(--accent-color);
+
+  /** Inputs
+   ---------------------------------------------------------*/
+
+  --input-background: #f4f4f4;
+  --input-color: #333;
+  --input-clear-background: #909ca7;
+
+  /** Buttons
+   ---------------------------------------------------------*/
+
+  --button-box-shadow: none;
+  --button-box-shadow-active: var(--button-box-shadow);
+
+  /** Header
+   ---------------------------------------------------------*/
+
+  --header-background: var(--background);
+  --header-color: var(--text-color);
+  --header-icon-color: var(--text-color);
+  --header-button-color: var(--text-color);
+  --header-disabled-button-color: #858789;
+  --header-action-button-color: var(--text-color);
+
+  /** Transitions
+   ---------------------------------------------------------*/
+
+  --transition-duration: 0.3s;
+
+  /** Palettes
+   ---------------------------------------------------------*/
+
+  --background-alpha: #b0b2b5;
+  --background-beta: #ffffff;
+  --background-gamma: #b9bbbe;
+  --background-delta: #c0c2c5;
+  --background-epsilon: #c7c9cc;
+  --background-zeta: #d0d2d5;
+  --background-eta: #d8dadd;
+  --background-theta: #e0e2e5;
+  --background-iota: #e7e9ec;
+
+  --translucent: rgba(0,0,0,0.05);
+  --translucent-plus: rgba(0,0,0,0.1);
+  --translucent-minus: rgba(0,0,0,0.2);
+
+  /* The same as the effect people watch on YouTube */
+  --neumorphic-background: linear-gradient(to bottom, #c4c6c9, #fff);
+  --neumorphic-shadow:
+    1rem 1rem 1.5rem #c4c6c9,
+    -1rem -1rem 1.5rem #fff;
+  --neumorphic-shadow-inner:
+    inset 1rem 1rem 1.5rem #c4c6c9,
+    inset -1rem -1rem 1.5rem #fff;
+
+  /* Buttons like the ones in the FM Radio app */
+  --neumorphic-button-background: linear-gradient(to bottom, #d0d2d5, #fff);
+  --neumorphic-button-shadow:
+    inset 0.3rem 0.3rem 0.1rem #fff,
+    inset -0.3rem 0.3rem 0.1rem #e0e2e5,
+    inset 0.3rem -0.3rem 0.1rem #e0e2e5,
+    inset -0.3rem -0.3rem 0.1rem #d0d2d5;
+
+  --backdrop-color: rgba(231, 233, 236, 0.5);
+}
+
+[data-theme="dark"] {
+
+  /** Accent Color
+   ---------------------------------------------------------*/
+
+  --accent-color: #c080e0;
+  --accent-text-color: rgba(0,0,0,0.75);
+  --focus-outline: 0.2rem solid var(--accent-color);
+
+  /** Statusbar Filter
+   ---------------------------------------------------------*/
+
+  --statusbar-filter: none;
+
+  /** Grey Colors
+   ---------------------------------------------------------*/
+
+  --color-alpha: #333333;
+  --color-beta: #ffffff;
+  --color-gamma: #4d4d4d;
+  --color-delta: #5f5f5f;
+  --color-epsilon: #858789;
+  --color-zeta: #a6a8ab;
+  --color-eta: #c7c9cc;
+  --color-theta: #e7e9ec;
+  --color-iota: #f4f6f8;
+
+  /** Brand Colors
+   ---------------------------------------------------------*/
+
+  --color-darkblue: #0061e0;
+  --color-blue: #00a0e8;
+  --color-turquoise: #00ddff;
+  --color-darkorange: #a04030;
+  --color-orange: #ff6040;
+  --color-yellow: #ffc000;
+  --color-violet: #d15ca8;
+
+  --color-warning: var(--color-yellow);
+  --color-destructive: #c00040;
+  --color-preffered: #40a060;
+
+  /** Background
+   ---------------------------------------------------------*/
+
+  --background: #101214;
+  --background-plus: #212325;
+  --background-minus: #66686a;
+
+  /** Borders
+   ---------------------------------------------------------*/
+
+  --border-color: var(--color-theta);
+
+  /** Text Color
+   ---------------------------------------------------------*/
+
+   --text-color: #fff;
+   --text-color-minus: #333;
+   --label-color: #fff;
+
+  /** Button
+   ---------------------------------------------------------*/
+
+  --button-background: linear-gradient(to bottom, #303234, #2c2e30);
+  --button-background-plus: linear-gradient(to bottom, #383a3c, #343638);
+  --button-background-minus: linear-gradient(to bottom, #3c3e40, #404244);
+  --button-background-list: linear-gradient(to bottom, #181a1c, #101214);
+
+  /** Links
+   ---------------------------------------------------------*/
+
+  --link-color: var(--accent-color);
+
+  /** Inputs
+   ---------------------------------------------------------*/
+
+  --input-background: #1c1e20;
+  --input-color: #fff;
+  --input-clear-background: #7c7b82;
+
+  /** Buttons
+   ---------------------------------------------------------*/
+
+  --button-box-shadow: none;
+  --button-box-shadow-active: var(--button-box-shadow);
+
+  /** Header
+   ---------------------------------------------------------*/
+
+  --header-background: var(--background);
+  --header-color: var(--text-color);
+  --header-icon-color: var(--text-color);
+  --header-button-color: var(--text-color);
+  --header-disabled-button-color: #858789;
+  --header-action-button-color: var(--text-color);
+
+  /** Transitions
+   ---------------------------------------------------------*/
+
+  --transition-duration: 0.3s;
+
+  /** Palettes
+   ---------------------------------------------------------*/
+
+  --background-alpha: #000204;
+  --background-beta: #303234;
+  --background-gamma: #040608;
+  --background-delta: #080a0c;
+  --background-epsilon: #0c0e10;
+  --background-zeta: #101214;
+  --background-eta: #181a1c;
+  --background-theta: #202224;
+  --background-iota: #282a2c;
+
+  --translucent: rgba(255,255,255,0.05);
+  --translucent-plus: rgba(255,255,255,0.15);
+  --translucent-minus: rgba(255,255,255,0.25);
+
+  /* The same as the effect people watch on YouTube */
+  --neumorphic-background: linear-gradient(to bottom, #1c1e1f, #26282b);
+  --neumorphic-shadow:
+    1rem 1rem 1.5rem #1c1e1f,
+    -1rem -1rem 1.5rem #26282b;
+  --neumorphic-shadow-inner:
+    inset 1rem 1rem 1.5rem #1c1e1f,
+    inset -1rem -1rem 1.5rem #26282b;
+
+  /* Buttons like the ones in the FM Radio app */
+  --neumorphic-button-background: linear-gradient(to bottom, #212325, #303234);
+  --neumorphic-button-shadow:
+    inset 0.3rem 0.3rem 0.1rem #303234,
+    inset -0.3rem 0.3rem 0.1rem #282a2c,
+    inset 0.3rem -0.3rem 0.1rem #282a2c,
+    inset -0.3rem -0.3rem 0.1rem #212325;
+
+  --backdrop-color: rgba(16, 18, 20, 0.5);
+}
+
+:focus-visible {
+  outline: dashed 0.1rem currentColor;
+}
+
+*,
+::placeholder {
+  font-family: 'Jali Arabic', system-ui, sans-serif;
+}
+
+html, body {
+  --textbox-padding: 0px;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: 'Jali Arabic', system-ui, sans-serif;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--background);
+  color-scheme: light dark;
+}
+
+#groups {
+  position: absolute;
+  top: 0;
+  width: 7rem;
+  height: 100%;
+  background: var(--background);
+  padding: 1rem;
+  box-sizing: border-box;
+  margin: 0;
+  user-select: none;
+  z-index: 5;
+}
+html[dir="ltr"] #groups {
+  left: 0;
+}
+html[dir="rtl"] #groups {
+  right: 0;
+}
+
+#groups > button {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  background: var(--background-plus);
+  color: var(--text-color);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, border-radius 0.3s ease;
+}
+
+#groups > button:hover {
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  border-radius: calc(100% / 3);
+}
+
+#groups > button:active {
+  transform: scale(0.95);
+  transition: none;
+  border-radius: calc(100% / 3);
+}
+
+#groups > button:before {
+  font-size: 2.4rem;
+}
+
+#groups #servers {
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: solid 0.1rem rgba(0,0,0,0.125);
+}
+
+#groups #servers li {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: var(--background-plus) url('images/group.svg') no-repeat center / cover;
+  margin: 0 0 1rem;
+  list-style: none;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#groups #servers li:hover {
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  border-radius: calc(100% / 3);
+}
+
+#groups #servers li:active {
+  transform: scale(0.95);
+  transition: none;
+  border-radius: calc(100% / 3);
+}
+
+#groups #servers li.selected {
+  box-shadow: inset 0 0 0 0.2rem var(--text-color), inset 0 0 0 0.4rem var(--background-plus);
+  background-size: calc(100% - 0.8rem);
+}
+
+#groups #servers li em {
+  background: #c00040;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-radius: 1.2rem;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  display: block;
+  font-style: normal;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  box-shadow: 0 0 0 0.3rem var(--background);
+  color: rgba(255,255,255,0.75);
+  font-size: 1.6rem;
+}
+html[dir="ltr"] #groups #servers li em {
+  right: 0;
+}
+html[dir="rtl"] #groups #servers li em {
+  left: 0;
+}
+
+#sidebar {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 7rem);
+  height: calc(100% - 5rem);
+  background: var(--background-color-sidebar);
+  user-select: none;
+}
+html[dir="ltr"] #sidebar {
+  left: 7rem;
+}
+html[dir="rtl"] #sidebar {
+  right: 7rem;
+}
+
+#sidebar > #server-title {
+  width: 100%;
+  margin: 0;
+  height: 5rem;
+  line-height: 5rem;
+  font-weight: normal;
+  font-size: 2.4rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  background: var(--background-color-sidebar);
+  color: var(--text-color);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+html[dir="ltr"] #sidebar > #server-title {
+  text-align: left;
+}
+html[dir="rtl"] #sidebar > #server-title {
+  text-align: right;
+}
+
+#sidebar > #server-list {
+  width: 100%;
+  height: calc(100% - 5rem);
+  margin: 0;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  border-radius: 1.2rem;
+  overflow: auto;
+}
+
+#sidebar > #server-list .category header {
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  margin: 0;
+  padding: 0;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  color: var(--accent-color);
+  font-size: 1.6rem;
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+html[dir="ltr"] #sidebar > #server-list header {
+  text-align: left;
+}
+html[dir="rtl"] #sidebar > #server-list header {
+  text-align: right;
+}
+
+#sidebar > #server-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+#sidebar > #server-list ul li {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 1rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  color: var(--text-color);
+  font-size: 1.6rem;
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+}
+html[dir="ltr"] #sidebar > #server-list ul li {
+  text-align: left;
+}
+html[dir="rtl"] #sidebar > #server-list ul li {
+  text-align: right;
+}
+
+#sidebar > #server-list ul li:hover {
+  background: var(--translucent);
+}
+
+#sidebar > #server-list ul li:active {
+  background: var(--translucent-plus);
+}
+
+#sidebar > #server-list ul li:before {
+  content: '#';
+  font-weight: bold;
+}
+html[dir="ltr"] #sidebar > #server-list ul li:before {
+  margin-right: 1rem;
+}
+html[dir="rtl"] #sidebar > #server-list ul li:before {
+  margin-left: 1rem;
+}
+
+#sidebar > #server-list ul li.user {
+  position: relative;
+}
+html[dir="ltr"] #sidebar > #server-list ul li.user {
+  padding-left: 5rem;
+}
+html[dir="rtl"] #sidebar > #server-list ul li.user {
+  padding-right: 5rem;
+}
+
+#sidebar > #server-list ul li.user:before {
+  content: '';
+  width: 3rem;
+  height: 3rem;
+  display: inline-block;
+  background: #858585 var(--avatar-url) no-repeat center / cover;
+  position: absolute;
+  top: 0.5rem;
+  border-radius: 50%;
+  margin: 0;
+}
+html[dir="ltr"] #sidebar > #server-list ul li.user:before {
+  left: 1rem;
+}
+html[dir="rtl"] #sidebar > #server-list ul li.user:before {
+  right: 1rem;
+}
+
+#sidebar > #server-list ul li[data-status]:after {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  background: var(--background-plus);
+  position: absolute;
+  top: 2.5rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.3rem var(--background-plus);
+  border: solid 0.25rem #858585;
+  box-sizing: border-box;
+}
+html[dir="ltr"] #sidebar > #server-list ul li[data-status]:after {
+  left: 3rem;
+}
+html[dir="rtl"] #sidebar > #server-list ul li[data-status]:after {
+  right: 3rem;
+}
+
+#sidebar > #server-list ul li[data-status="online"]:after {
+  background: #40a060;
+  border: none;
+}
+
+#sidebar > #server-list ul li[data-status="focus"]:after {
+  border-color: #c00040;
+  border-top-width: 0.4rem;
+  border-bottom-width: 0.4rem;
+}
+
+#sidebar > #server-list ul li[data-status="idle"]:after {
+  border: none;
+  box-shadow: 0 0 0 0.3rem var(--background-plus), inset 0.4rem -0.4rem 0 -0.1rem #c09000;
+}
+
+#sidebar > #server-list ul li.selected {
+  background: var(--background-plus);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+#sidebar > #server-list ul li.selected:hover {
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+}
+
+#sidebar > #server-list ul li em {
+  background: #c00040;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-radius: 1.2rem;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  display: block;
+  font-style: normal;
+  position: absolute;
+  top: calc(50% - 1.2rem);
+  text-align: center;
+  color: #fff;
+  font-size: 1.6rem;
+}
+html[dir="ltr"] #sidebar > #server-list ul li em {
+  right: 1rem;
+}
+html[dir="rtl"] #sidebar > #server-list ul li em {
+  left: 1rem;
+}
+
+#content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  z-index: 5;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(1, 0, 0, 1);
+}
+html[dir="ltr"] #content {
+  right: 0;
+  transform: translateX(100%);
+}
+html[dir="rtl"] #content {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+#content.visible {
+  transform: none !important;
+}
+
+@media screen and (min-width: 768px) {
+  #sidebar {
+    width: 256px;
+  }
+
+  #content {
+    width: calc(100% - 256px - 7rem);
+    transform: none !important;
+  }
+}

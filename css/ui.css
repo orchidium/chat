@@ -1,0 +1,171 @@
+#content header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 5rem;
+  background: var(--background);
+  top: 0;
+  z-index: 10;
+  display: flex;
+}
+
+#content > header a {
+  width: 5rem;
+  height: 5rem;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  line-height: 5rem;
+  color: var(--text-color);
+}
+
+#content > header a:before {
+  font-size: 2.4rem;
+}
+
+#content > header h1 {
+  flex: 1;
+  height: 5rem;
+  line-height: 5rem;
+  color: var(--text-color);
+  font-size: 2.4rem;
+  margin: 0;
+  font-weight: normal;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+#content footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 5rem;
+  background: var(--background);
+  bottom: 0;
+  z-index: 10;
+}
+
+#content footer form {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 3rem;
+  min-height: 4rem;
+  display: flex;
+  background: var(--background-plus);
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  align-items: flex-end;
+}
+
+#content footer form > #text-input {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  font-size: 1.6rem;
+  color: var(--text-color);
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+  outline: none;
+  width: 100%;
+  height: calc(4rem + var(--textbox-padding));
+  min-height: 4rem;
+  max-height: 10.6rem;
+  line-height: 2.2rem;
+  resize: none;
+  transition: height 0.3s cubic-bezier(0.2, 0.9, 0.1, 1);
+}
+
+#content footer form > #text-input ~ button:not(#send-button) {
+  transition: margin 0.3s cubic-bezier(0.2, 0.9, 0.1, 1), opacity 0.3s cubic-bezier(0.2, 0.9, 0.1, 1), visibility 0.3s;
+}
+
+#content footer form > #text-input:focus ~ button:not(#send-button) {
+  margin: 0 -2rem;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#content footer form > button {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+  color: var(--text-color);
+  position: relative;
+  border-radius: 50%;
+}
+
+#content footer form > button:hover {
+  background: var(--translucent);
+}
+
+#content footer form > button:active {
+  background: var(--translucent-plus);
+}
+
+#content footer form > button:before {
+  font-size: 2rem;
+}
+
+/* Drag & Drop */
+#drag-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--backdrop-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.1, 1);
+  opacity: 0;
+  visibility: hidden;
+}
+
+#drag-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@supports (backdrop-filter: saturate(180%) blur(20px)) {
+  #drag-overlay {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+#drag-overlay > h1 {
+  max-width: calc(100% - 3rem);
+  margin: 0 auto;
+  font-size: 2.4rem;
+  font-weight: 1000;
+  color: var(--text-color);
+  animation: drag-shake 0.5s ease 0.5s;
+}
+
+@keyframes drag-shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-1rem);
+  }
+  50% {
+    transform: translateX(1rem);
+  }
+  75% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
