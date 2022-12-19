@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="css/dialog.css">
     <link rel="stylesheet" type="text/css" href="css/tooltips.css">
     <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="css/emojis.css">
 
     <!-- Localization -->
     <meta name="defaultLanguage" content="en-US">
@@ -27,13 +28,14 @@
 
     <!-- Javascript -->
     <script type="module" src="services/script.js"></script>
+    <script type="text/javascript" defer src="js/embed.js"></script>
     <script type="text/javascript" defer src="js/attachment/image.js"></script>
     <script type="text/javascript" defer src="js/profile.js"></script>
     <script type="text/javascript" defer src="js/create_group.js"></script>
-    <script defer src="js/chat.js"></script>
+    <script type="text/javascript" defer src="js/chat.js"></script>
     <script type="text/javascript" defer src="js/text_input.js"></script>
+    <script type="text/javascript" defer src="js/emojis.js"></script>
     <script type="text/javascript" defer src="js/touch.js"></script>
-    <script type="text/javascript" defer src="js/lib/vanillaEmojiPicker.js"></script>
   </head>
   <body>
     <ul id="groups">
@@ -83,6 +85,11 @@
           </button>
         </form>
       </footer>
+
+      <div id="emojis">
+        <div id="emojis-categories"></div>
+        <div id="emojis-content"></div>
+      </div>
     </div>
 
     <div id="drag-overlay">

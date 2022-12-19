@@ -378,6 +378,7 @@ var OrchidServices = {
         if (user.username == username || user.email == username || user.phone_number == username) {
           if (user.password == MD5(password)) {
             OrchidServices.auth.loginWithToken(user.token);
+            OrchidServices.onlogin();
           } else {
             if (this.DEBUG) {
               console.error('[' + user.token + '] Password does not match.');
@@ -523,7 +524,9 @@ var OrchidServices = {
         chat_groups: { [token]: "" },
       });
     }
-  }
+  },
+
+  onlogin: () => {}
 };
 
 OrchidServices.init();

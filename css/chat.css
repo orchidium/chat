@@ -336,23 +336,16 @@ html[dir="rtl"] #groups {
   border: none;
   margin: 0 0 1rem;
   padding: 0;
-  background: var(--background-plus);
+  background: var(--background);
+  box-shadow: var(--neumorphic-shadow);
   color: var(--text-color);
   cursor: pointer;
   position: relative;
-  transition: transform 0.3s ease, border-radius 0.3s ease;
-}
-
-#groups > button:hover {
-  background-color: var(--accent-color);
-  color: var(--accent-text-color);
-  border-radius: calc(100% / 3);
 }
 
 #groups > button:active {
-  transform: scale(0.95);
-  transition: none;
-  border-radius: calc(100% / 3);
+  filter: brightness(1);
+  box-shadow: var(--neumorphic-shadow-inner);
 }
 
 #groups > button:before {
@@ -637,7 +630,6 @@ html[dir="rtl"] #sidebar > #server-list ul li em {
   height: 100%;
   background: var(--background);
   z-index: 5;
-  overflow: hidden;
   transition: transform 0.5s cubic-bezier(1, 0, 0, 1);
 }
 html[dir="ltr"] #content {

@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var isDarkMode = localStorage.getItem("ws.chat.darkMode") === "true";
   document.querySelector(":root").dataset.theme = isDarkMode ? "dark" : "light";
 
-  var NOTIFICATION_SOUND = new Audio("resources/notifier_wos.wav");
+  var NOTIFICATION_SOUND = new Audio("resources/notifier_orchid.wav");
   var WOS_MSG_SENT = new Audio("resources/wos_msg_sent.wav");
   var splashScreen = document.getElementById("splash-screen");
 
@@ -151,7 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
   OrchidServices.getWithUpdate(
     "profile/" + OrchidServices.userId(),
     function (data) {
-      if (!data.chat_groups) {
+      if (!OrchidServices.isUserLoggedIn()) {
+        location.href =
+          "https://orchidfoss.github.io/auth/?redirect=" +
+          encodeURI(location.href);
         return;
       }
 
@@ -179,10 +182,15 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.icon) {
               server.style.backgroundImage = "url(" + data.icon + ")";
             }
-            server.title = data.name;
             server.addEventListener("click", function () {
               loadGroup(entry[0], "", server);
             });
+
+            var title = document.createElement("div");
+            title.setAttribute("role", "title");
+            title.classList.add("end");
+            title.textContent = data.name;
+            server.appendChild(title);
 
             var pingAmount = 0;
             var pings = document.createElement("em");
@@ -281,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       chatTitle.innerText = data.username;
-      document.title = navigator.mozL10n.get('title') + ' - ' + data.username;
+      document.title = navigator.mozL10n.get("title") + " - " + data.username;
 
       if (item) {
         item.classList.add("selected");
@@ -328,34 +336,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             messageEntries.forEach(function (messageEntry) {
               var date = new Date(messageEntry[1].date_sent);
-              var formatted =
-                date
-                  .getUTCFullYear()
-                  .toLocaleString(
-                    navigator.language == "ar" ? "ar-SA" : undefined
-                  ) +
-                "/" +
-                (date.getMonth() + 1).toLocaleString(
-                  navigator.language == "ar" ? "ar-SA" : undefined
-                ) +
-                "/" +
-                date
-                  .getUTCDate()
-                  .toLocaleString(
-                    navigator.language == "ar" ? "ar-SA" : undefined
-                  ) +
-                " - " +
-                date
-                  .getUTCHours()
-                  .toLocaleString(
-                    navigator.language == "ar" ? "ar-SA" : undefined
-                  ) +
-                ":" +
-                date
-                  .getMinutes()
-                  .toLocaleString(
-                    navigator.language == "ar" ? "ar-SA" : undefined
-                  );
+              var formatted = date.toLocaleDateString(
+                navigator.mozL10n.language.code,
+                {
+                  year: "numeric",
+                  mn,
+                }
+              );
               drawMessage({
                 id: messageEntry[0],
                 date_sent: formatted,
@@ -574,7 +561,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 content.classList.add("visible");
                 chatTitle.innerText = room.name;
-                document.title = navigator.mozL10n.get('title') + ' - ' + room.name;
+                document.title =
+                  navigator.mozL10n.get("title") + " - " + room.name;
                 messages.innerHTML = "";
                 if (!data.messages[currentChannel]) {
                   return;
@@ -594,33 +582,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 messageEntries.forEach(function (messageEntry) {
                   var date = new Date(messageEntry[1].date_sent);
                   var formatted =
-                    date
-                      .getUTCFullYear()
-                      .toLocaleString(
-                        navigator.language == "ar" ? "ar-SA" : undefined
-                      ) +
-                    "/" +
-                    (date.getMonth() + 1).toLocaleString(
-                      navigator.language == "ar" ? "ar-SA" : undefined
-                    ) +
-                    "/" +
-                    date
-                      .getUTCDate()
-                      .toLocaleString(
-                        navigator.language == "ar" ? "ar-SA" : undefined
-                      ) +
-                    " - " +
-                    date
-                      .getUTCHours()
-                      .toLocaleString(
-                        navigator.language == "ar" ? "ar-SA" : undefined
-                      ) +
-                    ":" +
-                    date
-                      .getMinutes()
-                      .toLocaleString(
-                        navigator.language == "ar" ? "ar-SA" : undefined
-                      );
+                    date.toLocaleDateString(navigator.mozL10n.language.code, {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }) +
+                    " " +
+                    date.toLocaleTimeString(navigator.mozL10n.language.code, {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    });
                   drawMessage({
                     id: messageEntry[0],
                     date_sent: formatted,
@@ -716,19 +688,26 @@ document.addEventListener("DOMContentLoaded", function () {
           var link =
             /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
           var link2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-          var html = data.data.replace(bold, "<strong>$1</strong>");
-          html = html.replace(italic, "<i>$1</i>");
-          html = html.replace(stroke, "<del>$1</del>");
-          html = html.replace(underline, "<u>$1</u>");
-          html = html.replace(pscript, "<sup>$1</sup>");
-          html = html.replace(mscript, "<sub>$1</sub>");
-          html = html.replace(mark, "<mark>$1</mark>");
-          html = html.replace(link, "<a href='$1'>$1</a>");
-          html = html.replace(
+          var html = data.data.replaceAll(bold, "<strong>$1</strong>");
+          html = html.replaceAll(italic, "<i>$1</i>");
+          html = html.replaceAll(stroke, "<del>$1</del>");
+          html = html.replaceAll(underline, "<u>$1</u>");
+          html = html.replaceAll(pscript, "<sup>$1</sup>");
+          html = html.replaceAll(mscript, "<sub>$1</sub>");
+          html = html.replaceAll(mark, "<mark>$1</mark>");
+          html = html.replaceAll(link, "<a href='$1'>$1</a>");
+          html = html.replaceAll(
             link2,
             '$1<a target="_blank" href="http://$2">$2</a>'
           );
           context.innerHTML = html;
+
+          if (html.match(link)) {
+            var matches = html.match(link);
+            matches.forEach((match) => {
+              var embed = Embed(match, message);
+            });
+          }
         }
         break;
     }
@@ -791,7 +770,7 @@ document.addEventListener("DOMContentLoaded", function () {
         OrchidServices.set("chat_groups/" + currentId, {
           messages: {
             [currentChannel]: {
-              [data.id]: null,
+              [data.id]: OrchidServices.removeField(),
             },
           },
         });
@@ -916,17 +895,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  new EmojiPicker({
-    trigger: [
-      {
-        selector: "#emojis-button",
-        insertInto: "#text-input",
-      },
-    ],
-    closeButton: true,
-    //specialButtons: green
-  });
-
   var dragOverlay = document.getElementById("drag-overlay");
 
   document.addEventListener("dragenter", () => {
@@ -939,18 +907,22 @@ document.addEventListener("DOMContentLoaded", function () {
     dragOverlay.classList.remove("visible");
   });
 
-  document.addEventListener("drop", (evt) => {
-    dragOverlay.classList.remove("visible");
-    var files = evt.files;
-    files.forEach(file => {
-      var reader = new FileReader();
-      reader.addEventListener("load", function (e) {
-        var result = e.target.result;
-        resizeImage(result, function (image) {
-          sendMessage(image, "image");
+  document.addEventListener(
+    "drop",
+    (evt) => {
+      dragOverlay.classList.remove("visible");
+      var files = evt.files;
+      files.forEach((file) => {
+        var reader = new FileReader();
+        reader.addEventListener("load", function (e) {
+          var result = e.target.result;
+          resizeImage(result, function (image) {
+            sendMessage(image, "image");
+          });
         });
+        reader.readAsDataURL(file);
       });
-      reader.readAsDataURL(file);
-    });
-  }, false);
+    },
+    false
+  );
 });
